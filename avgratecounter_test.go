@@ -28,7 +28,7 @@ func TestAvgRateCounter(t *testing.T) {
 func TestAvgRateCounterAdvanced(t *testing.T) {
 	interval := 500 * time.Millisecond
 	almost := 450 * time.Millisecond
-	r := NewAvgRateCounter(interval)
+	r := NewAvgRateCounter(interval).WithResolution(100)
 
 	check := func(expected float64) {
 		val := r.Rate()
@@ -51,7 +51,7 @@ func TestAvgRateCounterAdvanced(t *testing.T) {
 
 func TestAvgRateCounterNoResolution(t *testing.T) {
 	interval := 500 * time.Millisecond
-	almost := 450 * time.Millisecond
+	almost := 400 * time.Millisecond
 	r := NewAvgRateCounter(interval).WithResolution(1)
 
 	check := func(expected float64) {
